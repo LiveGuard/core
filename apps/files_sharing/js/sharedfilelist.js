@@ -122,13 +122,14 @@
 				if (fileData.shareState === OC.Share.STATE_REJECTED) {
 					text = t('files_sharing', 'Rejected');
 					shareStateClass = 'share-state-rejected';
-					iconClass = 'icon-close';
+					iconClass = 'icon-rejected';
 				} else if (fileData.shareState === OC.Share.STATE_PENDING) {
 					text = t('files_sharing', 'Pending');
 					shareStateClass = 'share-state-pending';
-					iconClass = 'icon-add';
+					iconClass = 'icon-added';
 				} else {
 					shareStateClass = 'share-state-accepted';
+                    iconClass = 'icon-removed';
 				}
 				td = $('<td></td>').attr({"class": "share-state"});
 				td.append($('<span></span>').attr({
