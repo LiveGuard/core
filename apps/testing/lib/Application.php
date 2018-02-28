@@ -38,6 +38,9 @@ class Application extends App {
 			$userManager->registerBackend($c->query(AlternativeHomeUserBackend::class));
 
 			$userManager->listen('\OC\User', 'postCreateUser', function ($user, $password) use ($c) {
+				if ($user->getUID() === 'admin') {
+					return;
+				}
 				$q = $c->getServer()->getDatabaseConnection()->getQueryBuilder();
 				$q->update('*PREFIX*accounts')
 					->set('backend', $q->expr()->literal(AlternativeHomeUserBackend::class))
